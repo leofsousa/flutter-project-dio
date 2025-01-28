@@ -10,9 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.red
+      ),
+      home: const HomePage(),
       );
   }
 }
@@ -30,7 +33,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Meu App"),
-        backgroundColor: Colors.red,
       ),
     );
   }
