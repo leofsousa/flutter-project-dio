@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+import '../service/gerador_numero_aleatorio_service.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -11,10 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var numeroGerado = 0;
 
-int _gerarNumeroAleatorio() {
-  Random numeroAleatorio = Random();
-  return numeroAleatorio.nextInt(1000);
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,7 @@ int _gerarNumeroAleatorio() {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            numeroGerado = _gerarNumeroAleatorio();
+            numeroGerado = GeradorNumeroAleatorioService.gerarNumeroAleatorio();
           });
         },
         backgroundColor: Colors.red,
