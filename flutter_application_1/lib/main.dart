@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
+
 
 void main(){
   runApp( const MyApp());
@@ -10,30 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.red
-      ),
-      home: const HomePage(),
+      home: HomePage(),
       );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
 
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Meu App"),
-      ),
-    );
-  }
-}
