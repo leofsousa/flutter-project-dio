@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   var numeroGerado = 0;
+  var quantidadeCliques = 0;
 
   
 
@@ -22,11 +23,24 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Meu App'),
         ),
-      body: Center(child: Text(numeroGerado.toString())),
+      body: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Text("Ações do Usuário"),
+            Text("Foi clicado: $quantidadeCliques vezes"),
+            Text("O número gerado foi: $numeroGerado "),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add_box),
         onPressed: () {
           setState(() {
+            quantidadeCliques = quantidadeCliques + 1;
             numeroGerado = GeradorNumeroAleatorioService.gerarNumeroAleatorio(1000);
           });
         }
