@@ -27,12 +27,55 @@ class _HomePageState extends State<HomePage> {
         width: double.infinity,
         margin: const EdgeInsets.fromLTRB(8, 8, 8, 8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text("Ações do Usuário"),
-            Text("Foi clicado: $quantidadeCliques vezes"),
-            Text("O número gerado foi: $numeroGerado "),
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.cyan,
+              child: 
+                const Text("Ações do Usuário")),
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: Container(
+                color: Colors.orange,
+                child: 
+                  Text("Foi clicado: $quantidadeCliques vezes")),
+            ),
+            Container(
+              width: double.infinity,
+              color: Colors.indigo ,
+              child: 
+                Text("O número gerado foi: $numeroGerado ")),
+            Expanded(
+              child: Container(
+                color: Colors.grey ,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        color: Colors.red,
+                        child: const Text("Nome: ")),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        color: Colors.blue,
+                        child: const Text("Leonardo Felipe de Sousa")),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        color: Colors.green,
+                        child: const Text("26")),
+                    )
+                  ],),
+              ),
+            )
           ],
         ),
       ),
