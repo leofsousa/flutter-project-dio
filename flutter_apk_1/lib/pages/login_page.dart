@@ -8,9 +8,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-  String email = "";
-  String senha = "";
+  var emailController = TextEditingController(
+    text: "",
+  );
+  var senhaController = TextEditingController(
+    text: "",
+  );
   bool isObscureText = true;
 
   @override
@@ -69,8 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.symmetric(horizontal: 30),
                     height: 30,
                     child: TextField(
+                      controller: emailController,
                       onChanged: (value) {
-                        email = value;
+                        debugPrint(value);
                       },
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
@@ -90,24 +94,28 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.symmetric(horizontal: 30),
                     height: 30,
                     child: TextField(
+                      controller: senhaController,
                       obscureText: isObscureText,
                       onChanged: (value) {
-                        senha = value;
+                        debugPrint(value);
                       },
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           enabledBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.purple)),
-                          prefixIcon: const Icon(Icons.lock, color: Colors.purple),
+                          prefixIcon:
+                              const Icon(Icons.lock, color: Colors.purple),
                           suffixIcon: InkWell(
                             onTap: () {
                               setState(() {
                                 isObscureText = !isObscureText;
                               });
                             },
-                            child: Icon( 
-                              isObscureText ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.white),
+                            child: Icon(
+                                isObscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Colors.white),
                           ),
                           hintText: "Senha",
                           hintStyle: const TextStyle(color: Colors.white)),
@@ -122,8 +130,12 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: TextButton(
                           onPressed: () {
-                            print(email);
-                            print(senha);
+                            if (emailController.text == "leonardo@email.com" &&
+                                senhaController.text == "123456") {
+                              debugPrint("Login Efetuado com Sucesso");
+                            } else {
+                              debugPrint("Erro ao Efetuar o Login");
+                            }
                           },
                           style: TextButton.styleFrom(
                             shape: RoundedRectangleBorder(

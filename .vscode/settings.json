@@ -4,7 +4,7 @@
     "editor.formatOnSave": true
   },
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "dart.lineLength": 80, // ou o número de colunas que preferir
   "dart.formatOnSave": true,
