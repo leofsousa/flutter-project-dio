@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 alignment: Alignment.center,
                 width: double.infinity,
-                margin: const EdgeInsets.symmetric(horizontal: 30),
+                margin: const EdgeInsets.symmetric(horizontal: 30), 
                 height: 30,
                 child: TextButton(onPressed: () {}, 
                   style: TextButton.styleFrom(
