@@ -10,6 +10,6 @@ class Pagina2Page extends StatefulWidget {
 class _Pagina2PageState extends State<Pagina2Page> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(color: Colors.amberAccent);
   }
 }
