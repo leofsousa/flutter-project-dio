@@ -130,11 +130,17 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: TextButton(
                           onPressed: () {
-                            if (emailController.text == "leonardo@email.com" &&
+                            if (emailController.text.trim() ==
+                                    "leonardo@email.com" &&
                                 senhaController.text == "123456") {
-                              debugPrint("Login Efetuado com Sucesso");
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Login Efetuado com Sucesso!")));
                             } else {
-                              debugPrint("Erro ao Efetuar o Login");
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Erro ao Efetuar o Login"),
+                              ));
                             }
                           },
                           style: TextButton.styleFrom(
