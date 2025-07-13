@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apk_1/pages/dados_cadastrais.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -23,9 +24,27 @@ class _MainPageState extends State<MainPage> {
               children: [
                 InkWell(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Dados Cadastrais")),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Dados Cadastrais")),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DadosCadastraisPage(texto: "Meus Dados")));
+
+                  },
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Termos de Uso e Privacidade")),
                   onTap: () {},
                 ),
                 const Divider(),
@@ -34,20 +53,9 @@ class _MainPageState extends State<MainPage> {
                 ),
                 InkWell(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Termos de Uso e Privacidade")),
-                  onTap: () {},
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Configurações")),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      width: double.infinity,
+                      child: const Text("Configurações")),
                   onTap: () {},
                 ),
               ],
