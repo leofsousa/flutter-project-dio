@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/login_page.dart';
 
-import 'pages/main_page.dart';
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -11,11 +9,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        appBarTheme: const AppBarTheme(
-          color: Colors.blue
-        )
-      ),
+          primarySwatch: Colors.blue,
+          appBarTheme: const AppBarTheme(color: Colors.blue)),
       home: const LoginPage(),
     );
   }
