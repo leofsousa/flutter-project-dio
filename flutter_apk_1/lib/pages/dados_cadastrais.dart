@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apk_1/repositories/nivel_repository.dart';
 import 'package:flutter_apk_1/shared/widgets/text_label.dart';
 
 class DadosCadastraisPage extends StatefulWidget {
@@ -12,6 +13,15 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var nomeController = TextEditingController(text: '');
   var dataNacimentoController = TextEditingController(text: '');
   DateTime? dataNacimento;
+  var nivelRepository = NivelRepository();
+  var niveis = [];
+  var nivelSelecionado = "";
+
+  @override
+  void initState() {
+    niveis = nivelRepository.retornaNiveis();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +38,9 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
             TextField(
               controller: nomeController,
             ),
-            const SizedBox(
-              height: 10,
+            const TextLabel(
+              texto: "Data de Nascimento",
             ),
-            const TextLabel(texto: "Data de Nascimento",)
-            ,
             TextField(
               controller: dataNacimentoController,
               readOnly: true,
@@ -42,11 +50,27 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                     initialDate: DateTime(2000, 1, 1),
                     firstDate: DateTime(1900, 1, 1),
                     lastDate: DateTime(2023, 10, 20));
-                if(data != null){
+                if (data != null) {
                   dataNacimentoController.text = data.toString();
                   dataNacimento = data;
-                };
+                }
               },
+            ),
+            const TextLabel(texto: "Nível de Experiência"),
+            Column(
+              children: niveis
+                  .map((nivel) => RadioListTile(
+                      title: Text(nivel.toString()),
+                      selected: nivelSelecionado == nivel,
+                      value: nivel.toString(),
+                      groupValue: nivelSelecionado,
+                      onChanged: (value) {
+                        print(value);
+                        setState(() {
+                          nivelSelecionado = value.toString();
+                        });
+                      }))
+                  .toList(),
             ),
             TextButton(
                 onPressed: () {
