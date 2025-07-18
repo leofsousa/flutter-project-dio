@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const DadosCadastraisPage(
-                                texto: "Meus Dados")));
+                                )));
                   },
                 ),
                 const Divider(),

@@ -1,15 +1,40 @@
 import 'package:flutter/material.dart';
 
-class DadosCadastraisPage extends StatelessWidget {
-  final String texto;
-  const DadosCadastraisPage({super.key, required this.texto});
+class DadosCadastraisPage extends StatefulWidget {
+  const DadosCadastraisPage({super.key});
+
+  @override
+  State<DadosCadastraisPage> createState() => _DadosCadastraisPageState();
+}
+
+class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
+  TextEditingController nomeController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(texto),),
-      body: const Center(
-        child: Text("Dados Cadastrais"),
+      appBar: AppBar(
+        title: const Text('Meus Dados'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Nome",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            TextField(
+              controller: nomeController,
+            ),
+            TextButton(
+                onPressed: () {
+                  print(nomeController.text);
+                },
+                child: const Text("Salvar"))
+          ],
+        ),
       ),
     );
   }
