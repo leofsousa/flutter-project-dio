@@ -20,12 +20,22 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var linguagens = [];
   var linguagensSelecionadas = [];
   var nivelSelecionado = "";
+  double salarioEscolhido = 0;
+  int tempoExperiencia = 0;
 
   @override
   void initState() {
     niveis = nivelRepository.retornaNiveis();
     linguagens = linguagensRepository.retornaLinguagens();
     super.initState();
+  }
+
+  List<DropdownMenuItem> returnItens(int quantidadeMaxima) {
+    var itens = <DropdownMenuItem>[];
+    for (var i = 0; i < quantidadeMaxima; i++) {
+      itens.add(DropdownMenuItem(value: i, child: Text(i.toString())));
+    }
+    return itens;
   }
 
   @override
@@ -95,10 +105,36 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                       }))
                   .toList(),
             ),
+            const TextLabel(texto: "Tempo de Experiência. (Em Anos)"),
+            DropdownButton(
+                value: tempoExperiencia,
+                isExpanded: true,
+                items: returnItens(50),
+                onChanged: (value) {
+                  setState(() {
+                    tempoExperiencia = int.parse(value.toString());
+                  });
+                }),
+            TextLabel(
+                texto:
+                    "Pretenção Salarial: R\$ ${salarioEscolhido.round().toString()}"),
+            Slider(
+                min: 0,
+                max: 10000,
+                value: salarioEscolhido,
+                onChanged: (double value) {
+                  setState(() {
+                    salarioEscolhido = value;
+                  });
+                }),
             TextButton(
                 onPressed: () {
                   print(nomeController.text);
                   print(dataNacimento);
+                  print(nivelSelecionado);
+                  print(linguagensSelecionadas);
+                  print(tempoExperiencia);
+                  print(salarioEscolhido.round());
                 },
                 child: const Text("Salvar"))
           ],
