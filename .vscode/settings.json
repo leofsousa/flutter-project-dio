@@ -8,5 +8,6 @@
   },
   "dart.lineLength": 80, // ou o número de colunas que preferir
   "dart.formatOnSave": true,
-  "dart.organizeImportsOnSave": true
+  "dart.organizeImportsOnSave": true,
+  "cmake.sourceDirectory": "C:/Users/Leonardo/Documents/flutter-project-dio/flutter_apk_1/windows/runner"
 }
