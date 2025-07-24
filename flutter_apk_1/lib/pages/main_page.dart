@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apk_1/pages/dados_cadastrais.dart';
 import 'package:flutter_apk_1/pages/pagina1.dart';
 import 'package:flutter_apk_1/pages/pagina2.dart';
 import 'package:flutter_apk_1/pages/pagina3.dart';
