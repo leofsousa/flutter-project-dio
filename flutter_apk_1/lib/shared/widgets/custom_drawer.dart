@@ -150,14 +150,16 @@ class CustomDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: const Row(
                   children: [
-                    Icon(Icons.settings),
+                    Icon(Icons.exit_to_app),
                     SizedBox(
                       width: 10,
                     ),
-                    Text("Configurações"),
+                    Text("Sair"),
                   ],
                 )),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
