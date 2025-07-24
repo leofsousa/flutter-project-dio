@@ -21,15 +21,15 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          title: Text("Câmera"),
-                          leading: Icon(Icons.camera),
+                          title: const Text("Câmera"),
+                          leading: const Icon(Icons.camera),
                         ),
                         ListTile(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          leading: Icon(Icons.album),
-                          title: Text("Galeria"),
+                          leading: const Icon(Icons.album),
+                          title: const Text("Galeria"),
                         )
                       ],
                     );
@@ -43,8 +43,8 @@ class CustomDrawer extends StatelessWidget {
                   child: Image.network(
                       "https://c5gwmsmjx1.execute-api.us-east-1.amazonaws.com/prod/dados_processo_seletivo/logo_empresa/119818/LOGO-DIO-COLOR.png_name_20221031-2831-ekn5hh.png"),
                 ),
-                accountName: Text("Leonardo Sousa"),
-                accountEmail: Text("email@email.com")),
+                accountName: const Text("Leonardo Sousa"),
+                accountEmail: const Text("email@email.com")),
           ),
           InkWell(
             child: Container(
@@ -122,6 +122,26 @@ class CustomDrawer extends StatelessWidget {
           const Divider(),
           const SizedBox(
             height: 20,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.settings),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Configurações"),
+                  ],
+                )),
+            onTap: () {},
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 10,
           ),
           InkWell(
             child: Container(
