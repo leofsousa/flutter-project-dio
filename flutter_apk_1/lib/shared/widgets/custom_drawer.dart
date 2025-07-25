@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/dados_cadastrais.dart';
+import 'package:flutter_apk_1/pages/login_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -158,7 +159,42 @@ class CustomDrawer extends StatelessWidget {
                   ],
                 )),
             onTap: () {
-              Navigator.pop(context);
+              showDialog(
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return AlertDialog(
+                      alignment: Alignment.centerLeft,
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      title: const Text(
+                        "Meu App",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      content: const Wrap(children: [
+                        Text(
+                          "Você sairá do aplicativo!",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text("Deseja Realmente Sair do Aplicativo?"),
+                      ]),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Não')),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            child: const Text('Sim'))
+                      ],
+                    );
+                  });
             },
           ),
         ],

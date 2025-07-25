@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apk_1/pages/login_page.dart';
+// import 'package:flutter_apk_1/pages/login_page.dart';
+import 'package:flutter_apk_1/pages/main_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
           appBarTheme: const AppBarTheme(color: Colors.blue)),
-      home: const LoginPage(),
+      home: const MainPage(),
     );
   }
 }
