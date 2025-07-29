@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/card_page.dart';
-import 'package:flutter_apk_1/pages/pagina2.dart';
+import 'package:flutter_apk_1/pages/image_assets.dart';
 import 'package:flutter_apk_1/pages/pagina3.dart';
 import 'package:flutter_apk_1/shared/widgets/custom_drawer.dart';
 
@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
                 scrollDirection: Axis.horizontal,
                 children: const [
                   CardPage(),
-                  Pagina2Page(),
+                  ImageAssetsPage(),
                   Pagina3Page(),
                 ],
               ),
