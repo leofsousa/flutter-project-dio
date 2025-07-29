@@ -10,6 +10,13 @@ class Pagina2Page extends StatefulWidget {
 class _Pagina2PageState extends State<Pagina2Page> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.amberAccent);
+    return Container(
+      color: Colors.amberAccent,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        children: const [
+          Text("Página 2"),
+        ],
+      ));
   }
 }

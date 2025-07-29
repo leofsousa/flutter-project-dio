@@ -3,7 +3,7 @@ import 'package:flutter_apk_1/model/card_detail.dart';
 class CardDetailRepository {
 
   Future<CardDetail> get() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     return CardDetail(
       1,
       "Meu Card",

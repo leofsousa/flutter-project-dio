@@ -20,6 +20,7 @@ class _CardPage extends State<CardPage> {
     carregarDados();
   }
 
+
   void carregarDados() async {
     cardDetail = await cardDetailRepository.get();
     setState(() {});
