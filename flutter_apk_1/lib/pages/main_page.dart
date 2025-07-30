@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/card_page.dart';
 import 'package:flutter_apk_1/pages/image_assets.dart';
-import 'package:flutter_apk_1/pages/pagina3.dart';
+import 'package:flutter_apk_1/pages/list_view.dart';
 import 'package:flutter_apk_1/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
                 children: const [
                   CardPage(),
                   ImageAssetsPage(),
-                  Pagina3Page(),
+                  ListViewPage(),
                 ],
               ),
             ),
