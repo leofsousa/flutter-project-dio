@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/card_page.dart';
 import 'package:flutter_apk_1/pages/image_assets.dart';
 import 'package:flutter_apk_1/pages/list_view.dart';
+import 'package:flutter_apk_1/pages/list_view_h.dart';
 import 'package:flutter_apk_1/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,26 +32,31 @@ class _MainPageState extends State<MainPage> {
                   setState(() {
                     posicaoPagina = value;
                   });
-                  
                 },
                 scrollDirection: Axis.horizontal,
                 children: const [
                   CardPage(),
                   ImageAssetsPage(),
                   ListViewPage(),
+                  ListViewHorizontal(),
                 ],
               ),
             ),
             BottomNavigationBar(
-              onTap: (value){
-                controller.jumpToPage(value);
-              },
-              currentIndex: posicaoPagina,
-              items: const [
-              BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-              BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
-              BottomNavigationBarItem(label: "Pag3", icon: Icon(Icons.person)),
-            ])
+              type: BottomNavigationBarType.fixed,
+                onTap: (value) {
+                  controller.jumpToPage(value);
+                },
+                currentIndex: posicaoPagina,
+                items: const [
+                  BottomNavigationBarItem(
+                      label: "Home", icon: Icon(Icons.home)),
+                  BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
+                  BottomNavigationBarItem(
+                      label: "Pag3", icon: Icon(Icons.person)),
+                  BottomNavigationBarItem(
+                      label: "Pag4", icon: Icon(Icons.list)),
+                ])
           ],
         ),
       ),
