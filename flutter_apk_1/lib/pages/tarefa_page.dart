@@ -12,6 +12,7 @@ class TarefaPage extends StatefulWidget {
 class _TarefaPageState extends State<TarefaPage> {
   var descricaoController = TextEditingController();
   var tarefaRepository = TarefaRepository();
+  var apenasNaoConcluidos = false;
 
   var _tarefas = <Tarefa>[];
 
@@ -22,7 +23,12 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   void obterTarefas() async {
-    _tarefas = await tarefaRepository.listar();
+    if (apenasNaoConcluidos == true) {
+      _tarefas = await tarefaRepository.listarNaoConcluida();
+    } else {
+      _tarefas = await tarefaRepository.listar();
+    }
+    setState(() {});
   }
 
   @override
@@ -68,14 +74,79 @@ class _TarefaPageState extends State<TarefaPage> {
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: ListView.builder(
-            itemCount: _tarefas.length,
-            itemBuilder: (BuildContext bc, int index) {
-              var tarefa = _tarefas[index];
-              return ListTile(
-                title: Text(tarefa.getDescricao()),
-              );
-            }),
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Filtrar Apenas Não concluidas",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  Switch(
+                      value: apenasNaoConcluidos,
+                      onChanged: (bool value) {
+                        apenasNaoConcluidos = value;
+                        obterTarefas();
+                      })
+                ],
+              ),
+            ),
+            const Divider(),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: _tarefas.length,
+                  itemBuilder: (BuildContext bc, int index) {
+                    var tarefa = _tarefas[index];
+                    return Dismissible(
+                      confirmDismiss: (direction) async {
+                        bool? confirmar = await showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text("Confirmar exclusão"),
+                                content: Text(
+                                    "Deseja realmente excluir a tarefa '${tarefa.getDescricao()}'"),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                      child: const Text("Cancelar")),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, true);
+                                      },
+                                      child: const Text("Confimar"))
+                                ],
+                              );
+                            });
+                        return confirmar ?? false;
+                      },
+                      onDismissed: (DismissDirection dismissDirection) async {
+                        await tarefaRepository.remove(tarefa.getId());
+                        obterTarefas();
+                      },
+                      key: Key(tarefa.getId()),
+                      child: ListTile(
+                          title: Text(tarefa.getDescricao()),
+                          trailing: Switch(
+                              value: tarefa.getConcluido(),
+                              onChanged: (bool value) async {
+                                await tarefaRepository.alterar(
+                                    tarefa.getId(), value);
+                                obterTarefas();
+                              })),
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }
