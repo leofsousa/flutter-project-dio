@@ -111,7 +111,7 @@ class _TarefaPageState extends State<TarefaPage> {
                               return AlertDialog(
                                 title: const Text("Confirmar exclusão"),
                                 content: Text(
-                                    "Deseja realmente excluir a tarefa '${tarefa.getDescricao()}'"),
+                                    "Deseja realmente excluir a tarefa '${tarefa.descricao}'"),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
@@ -129,17 +129,17 @@ class _TarefaPageState extends State<TarefaPage> {
                         return confirmar ?? false;
                       },
                       onDismissed: (DismissDirection dismissDirection) async {
-                        await tarefaRepository.remove(tarefa.getId());
+                        await tarefaRepository.remove(tarefa.id);
                         obterTarefas();
                       },
-                      key: Key(tarefa.getId()),
+                      key: Key(tarefa.id),
                       child: ListTile(
-                          title: Text(tarefa.getDescricao()),
+                          title: Text(tarefa.descricao),
                           trailing: Switch(
-                              value: tarefa.getConcluido(),
+                              value: tarefa.concluido,
                               onChanged: (bool value) async {
                                 await tarefaRepository.alterar(
-                                    tarefa.getId(), value);
+                                    tarefa.id, value);
                                 obterTarefas();
                               })),
                     );
