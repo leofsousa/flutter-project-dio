@@ -1,7 +1,7 @@
 import 'package:flutter_apk_1/model/tarefa.dart';
 
 class TarefaRepository {
-  List<Tarefa> _tarefas = [];
+  final List<Tarefa> _tarefas = [];
 
   Future<void> adicionat(Tarefa tarefa) async {
     await Future.delayed(const Duration(seconds: 1));

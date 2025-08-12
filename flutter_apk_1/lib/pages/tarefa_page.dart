@@ -10,9 +10,10 @@ class TarefaPage extends StatefulWidget {
 }
 
 class _TarefaPageState extends State<TarefaPage> {
-  var tarefaRepository = TarefaRepository();
-  var _tarefas = <Tarefa>[];
   var descricaoController = TextEditingController();
+  var tarefaRepository = TarefaRepository();
+
+  var _tarefas = <Tarefa>[];
 
   @override
   void initState() {
@@ -46,24 +47,36 @@ class _TarefaPageState extends State<TarefaPage> {
                         },
                         child: const Text("Cancelar")),
                     TextButton(
-                        onPressed: () async {
-                          await tarefaRepository.adicionat(
-                              Tarefa(descricaoController.text, false));
-                          Navigator.pop(context);
-                          setState(() {});
-                        },
-                        child: const Text("Salvar"))
+                      onPressed: () {
+                        tarefaRepository
+                            .adicionat(
+                          Tarefa(descricaoController.text, false),
+                        )
+                            .then((_) {
+                          setState(() {
+                            obterTarefas();
+                          });
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Salvar"),
+                    )
                   ],
                 );
               });
         },
       ),
-      body: ListView.builder(
-          itemCount: _tarefas.length,
-          itemBuilder: (BuildContext bc, int index) {
-            var tarefa = _tarefas[index];
-            return Text(tarefa.getDescricao());
-          }),
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: ListView.builder(
+            itemCount: _tarefas.length,
+            itemBuilder: (BuildContext bc, int index) {
+              var tarefa = _tarefas[index];
+              return ListTile(
+                title: Text(tarefa.getDescricao()),
+              );
+            }),
+      ),
     );
   }
 }
