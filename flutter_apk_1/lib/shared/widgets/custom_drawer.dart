@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_apk_1/pages/dados_cadastrais.dart';
 import 'package:flutter_apk_1/pages/login_page.dart';
+import 'package:flutter_apk_1/pages/numeros_aleatorios_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -118,6 +119,32 @@ class CustomDrawer extends StatelessWidget {
                       ),
                     );
                   });
+            },
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.casino),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text("Gerador de Números"),
+                  ],
+                )),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (bc) => const NumerosAleatoriosPage()));
             },
           ),
           const Divider(),
