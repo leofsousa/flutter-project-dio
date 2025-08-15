@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class NumerosAleatoriosPage extends StatefulWidget {
   const NumerosAleatoriosPage({super.key});
@@ -41,15 +41,15 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
           shape: const CircleBorder(),
           child: const Icon(Icons.add),
           onPressed: () async {
-            final storage = await SharedPreferences.getInstance();
+            // final storage = await SharedPreferences.getInstance();
             var random = Random();
             setState(() {
               numeroGerado = random.nextInt(1000);
             });
-            storage.setInt("numero_aleatorio", numeroGerado);
+            // storage.setInt("numero_aleatorio", numeroGerado);
 
-            var numero = storage.getInt("numero_aleatorio");
-            debugPrint(numero.toString());
+            // var numero = storage.getInt("numero_aleatorio");
+            // debugPrint(numero.toString());
           },
         ),
       ),
