@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NumerosAleatoriosPage extends StatefulWidget {
   const NumerosAleatoriosPage({super.key});
@@ -12,6 +12,22 @@ class NumerosAleatoriosPage extends StatefulWidget {
 
 class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
   int numeroGerado = 0;
+  var storage;
+
+  void _carregarNumeroGerado() async {
+    storage = await SharedPreferences.getInstance();
+    setState(() {
+      numeroGerado = storage.getInt("numero_aleatorio") ?? 0;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _carregarNumeroGerado();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,15 +57,14 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
           shape: const CircleBorder(),
           child: const Icon(Icons.add),
           onPressed: () async {
-            // final storage = await SharedPreferences.getInstance();
             var random = Random();
             setState(() {
               numeroGerado = random.nextInt(1000);
             });
-            // storage.setInt("numero_aleatorio", numeroGerado);
+            storage.setInt("numero_aleatorio", numeroGerado);
 
-            // var numero = storage.getInt("numero_aleatorio");
-            // debugPrint(numero.toString());
+            var numero = storage.getInt("numero_aleatorio");
+            debugPrint(numero.toString());
           },
         ),
       ),
