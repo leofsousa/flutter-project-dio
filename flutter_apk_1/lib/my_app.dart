@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_apk_1/pages/login_page.dart';
 // import 'package:flutter_apk_1/pages/login_page.dart';
 import 'package:flutter_apk_1/pages/main_page.dart';
 
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          appBarTheme: const AppBarTheme(color: Colors.blue)),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.blue)),
       home: const MainPage(),
     );
   }
