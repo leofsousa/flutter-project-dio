@@ -11,19 +11,22 @@ class NumerosAleatoriosPage extends StatefulWidget {
 }
 
 class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
-  int numeroGerado = 0;
-  var storage;
+  int? numeroGerado = 0;
+  int? quantidadeCliques;
+  final CHAVE_NUMERO_GERADO = "numero_aleatorio";
+  final CHAVE_QUANTIDADE_CLIQUES = "quantidade_cliques";
+  late SharedPreferences storage;
 
   void _carregarNumeroGerado() async {
     storage = await SharedPreferences.getInstance();
     setState(() {
-      numeroGerado = storage.getInt("numero_aleatorio") ?? 0;
+      numeroGerado = storage.getInt(CHAVE_NUMERO_GERADO);
+      quantidadeCliques == storage.getInt(CHAVE_QUANTIDADE_CLIQUES);
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     _carregarNumeroGerado();
     super.initState();
   }
@@ -44,7 +47,14 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                numeroGerado.toString(),
+                numeroGerado == null ? "" : numeroGerado.toString(),
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+              ),
+              Text(
+                quantidadeCliques == null
+                    ? "Nenhum número gerado"
+                    : "Quantidade de cliques: ${quantidadeCliques.toString()}",
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
               ),
@@ -60,11 +70,10 @@ class _NumerosAleatoriosPageState extends State<NumerosAleatoriosPage> {
             var random = Random();
             setState(() {
               numeroGerado = random.nextInt(1000);
+              quantidadeCliques = (quantidadeCliques ?? 0) + 1;
             });
-            storage.setInt("numero_aleatorio", numeroGerado);
-
-            var numero = storage.getInt("numero_aleatorio");
-            debugPrint(numero.toString());
+            storage.setInt(CHAVE_NUMERO_GERADO, numeroGerado!);
+            storage.setInt(CHAVE_QUANTIDADE_CLIQUES, quantidadeCliques!);
           },
         ),
       ),
